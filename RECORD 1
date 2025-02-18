@@ -22,7 +22,7 @@ mysql> desc employee;
 5 rows in set (0.00 sec)
 
 ---------------------------------------------------------------------------------------------
-
+//VERIFIED
 2.      Create a table STUDENT have the fields(roll_no, name, age, address, gender)and add following constraints on it.
 
          Roll_no – Primary key
