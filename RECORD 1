@@ -1,6 +1,6 @@
 1.      Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no)
 
-QUARY:
+QUARY: 
 
 mysql> create table employee(emp_id int,name varchar(25),city varchar(25),dob int,adhar int);
 Query OK, 0 rows affected (0.04 sec)
