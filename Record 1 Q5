@@ -1,0 +1,67 @@
+5.Create an INVOICE database and having following tables.
+
+a)Customer(id, name, address, city, ph_no)
+
+create table customer(id int primary key,name varchar (25),address varchar(25),city varchar(25),phone_no int);
+desc customer;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(25) | YES  |     | NULL    |       |
+| address  | varchar(25) | YES  |     | NULL    |       |
+| city     | varchar(25) | YES  |     | NULL    |       |
+| phone_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+---------------------------------------------------------------------------------------
+
+b)Product(pid,  pname, price (default 0))
+
+create table product(pid int primary key,pname varchar(25),prince int default 0);
+
+desc product;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| pid    | int         | NO   | PRI | NULL    |       |
+| pname  | varchar(25) | YES  |     | NULL    |       |
+| prince | int         | YES  |     | 0       |       |
++--------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+------------------------------------------------------------------------------------------
+
+c)Invoice_master(inv_id, cust_id(FK), inv_date)
+
+create table invoice_master(inv_id int primary key,cust_id int,inv_date date,constraint FK_cust_id foreign key(cust_id) references customer(id));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc invoice_master;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| inv_id   | int  | NO   | PRI | NULL    |       |
+| cust_id  | int  | YES  | MUL | NULL    |       |
+| inv_date | date | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+-----------------------------------------------------------
+
+d)Invoice_item(inv_id (FK),  pid(FK), quantity)
+create table invoice_item(inv_id int,pid int,quantity int, foreign key(inv_id) references invoice_master(inv_id),foreign key(pid) references product(pid));
+Query OK, 0 rows affected (0.06 sec)
+
+desc invoice_item;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| inv_id   | int  | YES  | MUL | NULL    |       |
+| pid      | int  | YES  | MUL | NULL    |       |
+| quantity | int  | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+
