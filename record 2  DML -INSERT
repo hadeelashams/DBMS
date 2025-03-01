@@ -1,0 +1,102 @@
+a)  DML -INSERT
+
+ Insert values in INVOICE database. 
+
+Value insertion................
+-> customer_id  10001, 10002, 10003 etc
+-> name of city (calicut, ekm, tvm, etc..)
+-> some phone number should be null
+
+insert into customer values(1001,'Amil','aaaa','Palakad',234565411),(1002,'Hanan','bbbb','Kannur',452268411);
+
+insert into customer values(1003,'Hadeela','cccc','Calicut',986765432);
+
+mysql> insert into customer values(1004,'Hibha','dddd','Ernakulam',976765432);
+
+mysql> insert into customer values(1005,'Fza','eeee','Malapuram',915865212);
+
+insert into customer (id,name,address,city) values(1006,'Hisham','ffff','Wayanad');
+
+mysql> select * from customer;
++------+---------+---------+-----------+-----------+
+| id   | name    | address | city      | phone_no  |
++------+---------+---------+-----------+-----------+
+| 1001 | Amil    | aaaa    | Palakad   | 234565411 |
+| 1002 | Hanan   | bbbb    | Kannur    | 452268411 |
+| 1003 | Hadeela | cccc    | Calicut   | 986765432 |
+| 1004 | Hibha   | dddd    | Ernakulam | 976765432 |
+| 1005 | Fza     | eeee    | Malapuram | 915865212 |
+| 1006 | Hisham  | ffff    | Wayanad   |      NULL |
++------+---------+---------+-----------+-----------+
+6 rows in set (0.00 sec)
+
+--------------------------------------------------------------------------------
+
+
+
+-> product names....pen, pencil, soap, etc..
+-> some price between 50 rs and 150 rs
+
+insert into product values(111,'pen',10);
+insert into product values(112,'pencil',8),(113,'soap',53)
+insert into product values(114,'book',60),(115,'watch',200),(116,'Record book',350);
+
+select *from product;
++-----+-------------+-------+
+| pid | pname       | price |
++-----+-------------+-------+
+| 111 | pen         |    10 |
+| 112 | pencil      |     8 |
+| 113 | soap        |    53 |
+| 114 | book        |    60 |
+| 115 | watch       |   200 |
+| 116 | Record book |   350 |
++-----+-------------+-------+
+6 rows in set (0.00 sec)
+
+
+
+-> inv_date between 1st jan 2023 to 31st dec 2024
+-> some customers purchase more than 2 products
+
+ insert into invoice_master values(101,1001,'2023-11-24');
+ insert into invoice_master values(102,1002,'2023-4-23');
+ insert into invoice_master values(103,1003,'2023-6-12');
+ insert into invoice_master values(104,1003,'2023-6-12');
+ insert into invoice_master values(105,1003,'2024-4-18');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select *from invoice_master;
++--------+---------+------------+
+| inv_id | cust_id | inv_date   |
++--------+---------+------------+
+|    101 |    1001 | 2023-11-24 |
+|    102 |    1002 | 2023-04-23 |
+|    103 |    1003 | 2023-06-12 |
+|    104 |    1003 | 2023-06-12 |
+|    105 |    1003 | 2024-04-18 |
++--------+---------+------------+
+5 rows in set (0.00 sec)
+
+
+-> in_id   101,102, 103, etc
+-> some quantity should be less than 2
+
+insert into invoice_item values(101,111,2);
+insert into invoice_item values(101,112,3);
+insert into invoice_item values(102,112,1);
+insert into invoice_item values(102,115,1);
+insert into invoice_item values(103,114,4);
+
+ select * from invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    101 |  111 |        2 |
+|    101 |  112 |        3 |
+|    102 |  112 |        1 |
+|    102 |  115 |        1 |
+|    103 |  114 |        4 |
++--------+------+----------+
+5 rows in set (0.00 sec)
+
