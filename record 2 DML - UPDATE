@@ -1,0 +1,101 @@
+1. Update the price of a particular product. 
+
+update product set price=250 where pid=115;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from product;
++-----+-------------+-------+
+| pid | pname       | price |
++-----+-------------+-------+
+| 111 | pen         |    10 |
+| 112 | pencil      |     8 |
+| 113 | soap        |    53 |
+| 114 | book        |    60 |
+| 115 | watch       |   250 |
+| 116 | Record book |   350 |
++-----+-------------+-------+
+6 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------
+
+2. Change the name of city ‘calicut’ to ‘kozhikode’ in the customer table. 
+ 
+update customer set city='Kozhikode' where id=1003;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer;
++------+---------+---------+-----------+-----------+
+| id   | name    | address | city      | phone_no  |
++------+---------+---------+-----------+-----------+
+| 1001 | Amil    | aaaa    | Palakad   | 234565411 |
+| 1002 | Hanan   | bbbb    | Kannur    | 452268411 |
+| 1003 | Hadeela | cccc    | Kozhikode | 986765432 |
+| 1004 | Hibha   | dddd    | Ernakulam | 976765432 |
+| 1005 | Fza     | eeee    | Malapuram | 915865212 |
+| 1006 | Hisham  | ffff    | Wayanad   |      NULL |
++------+---------+---------+-----------+-----------+
+6 rows in set (0.00 sec)
+
+-----------------------------------------------------------------------------
+
+3. Update all prices with 2% of its original price. 
+  
+ update product set price=price*1.02;
+ Query OK, 4 rows affected (0.01 sec)
+ Rows matched: 6  Changed: 4  Warnings: 0
+
+mysql> select * from product;
++-----+-------------+-------+
+| pid | pname       | price |
++-----+-------------+-------+
+| 111 | pen         |    10 |
+| 112 | pencil      |     8 |
+| 113 | soap        |    54 |
+| 114 | book        |    61 |
+| 115 | watch       |   255 |
+| 116 | Record book |   357 |
++-----+-------------+-------+
+6 rows in set (0.00 sec)
+
+---------------------------------------------------------------
+ 4. Change the address, city, phone number of a particular customer. 
+ 
+  update customer set  address='alfalh', city='calicut',phone_no=111122333 where id=1003;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from customer;
++------+---------+---------+-----------+-----------+
+| id   | name    | address | city      | phone_no  |
++------+---------+---------+-----------+-----------+
+| 1001 | Amil    | aaaa    | Palakad   | 234565411 |
+| 1002 | Hanan   | bbbb    | Kannur    | 452268411 |
+| 1003 | Hadeela | alfalh  | calicut   | 111122333 |
+| 1004 | Hibha   | dddd    | Ernakulam | 976765432 |
+| 1005 | Fza     | eeee    | Malapuram | 915865212 |
+| 1006 | Hisham  | ffff    | Wayanad   |      NULL |
++------+---------+---------+-----------+-----------+
+6 rows in set (0.00 sec)
+
+ ---------------------------------------------------------
+ 
+ 5. Change the quantity of a purchased product of inv_id ‘101’
+
+update invoice_item set quantity=5 where inv_id=101 and pid=111;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from invoice_item;
++--------+------+----------+
+| inv_id | pid  | quantity |
++--------+------+----------+
+|    101 |  111 |        5 |
+|    101 |  112 |        3 |
+|    102 |  112 |        1 |
+|    102 |  115 |        1 |
+|    103 |  114 |        4 |
+|    101 |  112 |        3 |
++--------+------+----------+
+6 rows in set (0.01 sec)
