@@ -20,7 +20,7 @@ mysql> desc employee;
 
 2)Change the data type of the column ‘DOB’  in year the table EMPLOYEE   
 
-alter table employee modify dob varchar(20);
+alter table employee modify dob year;
 Query OK, 0 rows affected (0.07 sec)
 Records: 0  Duplicates: 0  Warnings: 0
 
@@ -32,7 +32,7 @@ mysql> desc employee;
 | emp_id | int         | YES  |     | NULL    |       |
 | name   | varchar(25) | YES  |     | NULL    |       |
 | city   | varchar(25) | YES  |     | NULL    |       |
-| dob    | varchar(20) | YES  |     | NULL    |       |
+| dob    | year        | YES  |     | NULL    |       |
 | adhar  | int         | YES  |     | NULL    |       |
 +--------+-------------+------+-----+---------+-------+
 6 rows in set (0.00 sec)
