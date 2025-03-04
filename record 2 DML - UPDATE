@@ -99,3 +99,4 @@ mysql> select * from invoice_item;
 |    101 |  112 |        3 |
 +--------+------+----------+
 6 rows in set (0.01 sec)
+//VERIFIED
