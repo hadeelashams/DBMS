@@ -1,0 +1,102 @@
+a) TCL COMMANDS
+
+
+          1.    Commit
+          2.    Rollback
+          3.    Savepoint
+
+------------------------------------------------------
+
+select * from hadeela;
++---------+-----------+---------+
+| name    | phone     | address |
++---------+-----------+---------+
+| Hadeela | 123456789 | aaaa    |
+| hanan   | 256398549 | ccc     |
+| hibha   | 256398849 | ddd     |
++---------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> set autocommit=off;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into hadeela values("hib",256398849,"eee");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from hadeela;
++---------+-----------+---------+
+| name    | phone     | address |
++---------+-----------+---------+
+| Hadeela | 123456789 | aaaa    |
+| hanan   | 256398549 | ccc     |
+| hibha   | 256398849 | ddd     |
+| hib     | 256398849 | eee     |
++---------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from hadeela;
++---------+-----------+---------+
+| name    | phone     | address |
++---------+-----------+---------+
+| Hadeela | 123456789 | aaaa    |
+| hanan   | 256398549 | ccc     |
+| hibha   | 256398849 | ddd     |
++---------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> savepoint shams;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from hadeela;
+Query OK, 3 rows affected (0.00 sec)
+
+
+mysql> select * from hadeela;
+Empty set (0.00 sec)
+
+mysql> rollback to shams;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from hadeela;
++---------+-----------+---------+
+| name    | phone     | address |
++---------+-----------+---------+
+| Hadeela | 123456789 | aaaa    |
+| hanan   | 256398549 | ccc     |
+| hibha   | 256398849 | ddd     |
++---------+-----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into hadeela values("hib",256398849,"ee");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from hadeela;
++---------+-----------+---------+
+| name    | phone     | address |
++---------+-----------+---------+
+| Hadeela | 123456789 | aaaa    |
+| hanan   | 256398549 | ccc     |
+| hibha   | 256398849 | ddd     |
+| hib     | 256398849 | ee      |
++---------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from hadeela;
++---------+-----------+---------+
+| name    | phone     | address |
++---------+-----------+---------+
+| Hadeela | 123456789 | aaaa    |
+| hanan   | 256398549 | ccc     |
+| hibha   | 256398849 | ddd     |
+| hib     | 256398849 | ee      |
++---------+-----------+---------+
+4 rows in set (0.00 sec)
