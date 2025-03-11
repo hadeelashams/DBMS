@@ -101,5 +101,4 @@ mysql> select * from hadeela;
 +---------+-----------+---------+
 4 rows in set (0.00 sec)
 
-//RESUBMIT
-GRANT/REVOKE???
+//VERIFIED
