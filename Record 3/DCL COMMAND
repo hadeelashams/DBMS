@@ -61,6 +61,24 @@ mysql> show grants for 'user2'@'localhost';
 | GRANT USAGE ON *.* TO `user2`@`localhost`                  |
 | GRANT UPDATE, DELETE ON `Invoice`.* TO `user2`@`localhost` |
 +------------------------------------------------------------+
+
+2.REVOKE
+
+Remove delete privilege of user 2
+
+2 rows in set (0.00 sec)mysql> revoke delete on Invoice.* from 'user2'@'localhost';;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> show grants for 'user2'@'localhost';
++----------------------------------------------------+
+| Grants for user2@localhost                         |
++----------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`          |
+| GRANT UPDATE ON `Invoice`.* TO `user2`@`localhost` |
++----------------------------------------------------+
 2 rows in set (0.00 sec)
+
+
+
 //RESUBMIT
 REVOKE??
