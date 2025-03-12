@@ -1,0 +1,40 @@
+#1. Delete the record of customer id ‘1001’. 
+
+
+mysql> delete from invoice_item where inv_id=101;
+Query OK, 3 rows affected (0.00 sec)
+
+mysql> delete from invoice_master where inv_id=101;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> delete from customer where id=1001;
+Query OK, 1 row affected (0.01 sec)
+
+
+
+#2. Delete all purchase details of items its quantity less than 2. 
+
+mysql> delete from invoice_item where quantity <2;
+Query OK, 2 rows affected (0.00 sec)
+
+
+#3.Delete the purchase details of product ‘pen’ in the in_id ‘101’. 
+
+mysql> delete from invoice_item where inv_id=101;
+Query OK, 1 row affected (0.01 sec)
+
+
+#4. Delete details of customer who does not have phone number. 
+
+mysql> delete from customer where phone_no is NULL;
+Query OK, 1 row affected (0.00 sec)
+
+#5. Delete Invoice details of a particular customer(name)
+
+mysql> delete from invoice_item where inv_id=102;
+Query OK, 2 rows affected (0.01 sec)
+ 
+#6. Delete the first two records of INVOICE_ITEM table.
+
+mysql> delete from invoice_item limit 2;
+Query OK, 2 rows affected (0.01 sec)
