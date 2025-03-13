@@ -94,3 +94,4 @@ mysql> desc dup_employee;
 +--------+-------------+------+-----+---------+-------+
 5 rows in set (0.01 sec)
 
+//VERIFIED
