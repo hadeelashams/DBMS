@@ -206,4 +206,3 @@ mysql> select concat(name,' lives in city ',city)from customer;
 9 rows in set (0.00 sec)
 
 
-
