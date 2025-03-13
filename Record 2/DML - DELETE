@@ -38,3 +38,4 @@ Query OK, 2 rows affected (0.01 sec)
 
 mysql> delete from invoice_item limit 2;
 Query OK, 2 rows affected (0.01 sec)
+//VERIFIED
