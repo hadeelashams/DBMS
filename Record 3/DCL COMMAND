@@ -82,3 +82,4 @@ mysql> show grants for 'user2'@'localhost';
 
 //RESUBMIT
 REVOKE??
+//VERIFIED
