@@ -128,3 +128,82 @@ mysql> select * from customer where name like '_i%';
 +------+--------+---------+-----------+-----------+
 2 rows in set (0.01 sec)
 
+********************************************************************************
+
+b) OPTIMIZING DATABASE:  (GROUP BY, AGGREGATE FUNCTIONS)
+
+1.    List product name, price except soap on price order.
+
+mysql> select pname,price from product where pname !='soap' order by price;
++-------------+-------+
+| pname       | price |
++-------------+-------+
+| pencil      |     8 |
+| pen         |    10 |
+| book        |    61 |
+| watch       |   255 |
+| Record book |   357 |
++-------------+-------+
+5 rows in set (0.00 sec)
+
+
+
+2.    Find minimum, maximum and average price of products.
+
+mysql> select min(price) as min_price,max(price) as max_price,avg(price) as avg_price from product;
++-----------+-----------+-----------+
+| min_price | max_price | avg_price |
++-----------+-----------+-----------+
+|         8 |       357 |  124.1667 |
++-----------+-----------+-----------+
+1 row in set (0.00 sec)
+
+
+3.    Find number of customers in each city.
+
+mysql> select city,count(*) as customer_no from customer group by city;
++-----------+-------------+
+| city      | customer_no |
++-----------+-------------+
+| mlp       |           1 |
+| Kannur    |           1 |
+| calicut   |           1 |
+| Ernakulam |           1 |
+| Malapuram |           1 |
++-----------+-------------+
+5 rows in set (0.00 sec)
+
+
+
+4.    Find number of customers in each city, only include city with more than 3 customers.
+
+mysql> select city,count(*) as customer_no from customer group by city having count(*)>=3;
++---------+-------------+
+| city    | customer_no |
++---------+-------------+
+| calicut |           3 |
+| mlp     |           3 |
++---------+-------------+
+2 rows in set (0.00 sec)
+
+
+5. Show data as displayed ‘who, where’ Eg: ‘customer1 lives in ekm’
+
+mysql> select concat(name,' lives in city ',city)from customer;
++-------------------------------------+
+| concat(name,' lives in city ',city) |
++-------------------------------------+
+| sona lives in city calicut          |
+| fida lives in city calicut          |
+| ameen lives in city mlp             |
+| ameena lives in city mlp            |
+| fza lives in city mlp               |
+| Hanan lives in city Kannur          |
+| Hadeela lives in city calicut       |
+| Hibha lives in city Ernakulam       |
+| Fza lives in city Malapuram         |
++-------------------------------------+
+9 rows in set (0.00 sec)
+
+
+
