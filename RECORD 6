@@ -1,0 +1,75 @@
+ACCESSING DATABASE:  (SUBQUERY)
+
+1.    List the product name and price of each invoice item.
+
+mysql> select pname,price from product where pid in (select pid from invoice_item);
++--------+-------+
+| pname  | price |
++--------+-------+
+| pen    |    10 |
+| pencil |     8 |
+| book   |    61 |
+| watch  |   255 |
++--------+-------+
+4 rows in set (0.00 sec)
+
+
+
+2.    List the product names, only include their purchased quantity more than 3.
+
+mysql> select pname from product where pid in(select pid from invoice_item where quantity >3);
++-------+
+| pname |
++-------+
+| book  |
++-------+
+1 row in set (0.01 sec)
+
+3.    Find the product that has no sale.
+
+mysql> select * from product where pid not in(select pid from invoice_item);
++-----+-------------+-------+
+| pid | pname       | price |
++-----+-------------+-------+
+| 113 | soap        |    54 |
+| 116 | Record book |   357 |
++-----+-------------+-------+
+2 rows in set (0.00 sec)
+
+
+4.    List the customer names who purchased the items ‘pen’ and ‘pencil’.
+ 
+mysql> select * from customer where id in(select cust_id from invoice_master where
+inv_id in(select inv_id from invoice_item where pid in(select pid from product wher
+e pname in('pen','pencil'))));
++------+-------+---------+--------+-----------+
+| id   | name  | address | city   | phone_no  |
++------+-------+---------+--------+-----------+
+| 1001 | fza   | wwww    | mlp    | 489632175 |
+| 1002 | Hanan | bbbb    | Kannur | 452268411 |
++------+-------+---------+--------+-----------+
+2 rows in set (0.00 sec)
+
+
+5.    Display the purchased product details of the customer ’hadeela’.
+
+mysql> SELECT * FROM product WHERE pid IN(SELECT pid FROM invoice_item WHERE inv_id IN(SELECT inv_id FROM invoice_master WHERE cust_id IN(SELECT id FROM customer WHERE name="hadeela")));
++-----+-------+-------+
+| pid | pname | price |
++-----+-------+-------+
+| 114 | book  |    61 |
++-----+-------+-------+
+1 row in set (0.00 sec)
+
+
+6.    List the names of all customers who have purchased at least 2 products, make sure that no duplicate names in the result.
+
+mysql> SELECT DISTINCT name FROM customer WHERE id IN(SELECT cust_id FROM invoice_master WHERE inv_id IN(SELECT inv_id FROM invoice_item GROUP BY inv_id HAVING
+COUNT(*) >= 2));
++-------+
+| name  |
++-------+
+| fza   |
+| Hanan |
++-------+
+2 rows in set (0.00 sec)
