@@ -1,0 +1,52 @@
+
+OPTIMIZING DATABASE: (JOINS)
+1List the product name and quantity of invoice items.
+
+mysql> select pname,quantity from product join invoice_item on product.pid=invoice_item.pid;
++--------+----------+
+| pname  | quantity |
++--------+----------+
+| pen    |        2 |
+| pencil |        3 |
+| pencil |        1 |
+| watch  |        1 |
+| book   |        4 |
++--------+----------+
+5 rows in set (0.00 sec)
+
+2.    Display invoice details of the transaction dated ’12-06-2023’.
+
+mysql> select * from invoice_master join invoice_item on invoice_master.inv_id=invoice_item.inv_id where inv_date='2023-06-12';
++--------+---------+------------+--------+------+----------+
+| inv_id | cust_id | inv_date   | inv_id | pid  | quantity |
++--------+---------+------------+--------+------+----------+
+|    103 |    1003 | 2023-06-12 |    103 |  114 |        4 |
++--------+---------+------------+--------+------+----------+
+1 row in set (0.00 sec)
+
+3.    Display the customer name, product name, invoice date of purchased item ‘pen’.
+
+mysql> select name,pname,inv_date from customer join invoice_master on customer.id=invoice_master.cust_id join invoice_item on invoice_master.inv_id=invoice_item.inv_id join product on product.pid=invoice_item.pid where pname='pen';
++------+-------+------------+
+| name | pname | inv_date   |
++------+-------+------------+
+| fza  | pen   | 2024-11-08 |
++------+-------+------------+
+1 row in set (0.01 sec)
+
+4.    Display all customer details and invoice details must include customer has not purchased items.
+
+mysql> select * from customer left join invoice_master on invoice_master.cust_id=customer.id;
++------+---------+---------+-----------+-----------+--------+---------+------------+
+| id   | name    | address | city      | phone_no  | inv_id | cust_id | inv_date   |
++------+---------+---------+-----------+-----------+--------+---------+------------+
+| 1001 | fza     | wwww    | mlp       | 489632175 |    101 |    1001 | 2024-11-08 |
+| 1002 | Hanan   | bbbb    | Kannur    | 452268411 |    102 |    1002 | 2023-04-23 |
+| 1003 | Hadeela | alfalh  | calicut   | 111122333 |    103 |    1003 | 2023-06-12 |
+| 1003 | Hadeela | alfalh  | calicut   | 111122333 |    104 |    1003 | 2023-06-12 |
+| 1003 | Hadeela | alfalh  | calicut   | 111122333 |    106 |    1003 | 2024-02-21 |
+| 1004 | Hibha   | dddd    | Ernakulam | 976765432 |    105 |    1004 | 2024-04-18 |
++------+---------+---------+-----------+-----------+--------+---------+------------+
+6 rows in set (0.00 sec)
+
+
