@@ -49,4 +49,4 @@ mysql> select * from customer left join invoice_master on invoice_master.cust_id
 +------+---------+---------+-----------+-----------+--------+---------+------------+
 6 rows in set (0.00 sec)
 
-
+//PART b?
