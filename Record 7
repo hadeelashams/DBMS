@@ -98,3 +98,4 @@ mysql> select pname from product where exists(select 1 from invoice_item where i
 +-------+
 1 row in set (0.00 sec)
 
+//VERIFIED
