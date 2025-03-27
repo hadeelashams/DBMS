@@ -49,4 +49,52 @@ mysql> select * from customer left join invoice_master on invoice_master.cust_id
 +------+---------+---------+-----------+-----------+--------+---------+------------+
 6 rows in set (0.00 sec)
 
-//PART b?
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+ OPTIMIZING DATABASE: (Using Set, arithmetic, logical and special operators)
+
+1.Display customer_id, city  who lives either in ‘CLT’ or in ‘mlp’
+
+mysql> select id,city from customer where city='mlp' or city='calicut';
++------+---------+
+| id   | city    |
++------+---------+
+| 1001 | mlp     |
+| 1003 | calicut |
++------+---------+
+2 rows in set (0.00 sec)
+
+2.Display product details with an updated price amount(new price= old price+5rs)mysql> select pname,price,price+5 as update_price from product;
++-------------+-------+--------------+
+| pname       | price | update_price |
++-------------+-------+--------------+
+| pen         |    10 |           15 |
+| pencil      |     8 |           13 |
+| soap        |    54 |           59 |
+| book        |    61 |           66 |
+| watch       |   255 |          260 |
+| Record book |   357 |          362 |
++-------------+-------+--------------+
+6 rows in set (0.00 sec)
+
+
+3.Display customer details who doesn’t have phone number and lives in ‘Calicut’ city (use logical operators)
+
+mysql> select * from customer where phone_no is null and city='calicut';
++------+---------+---------+---------+----------+
+| id   | name    | address | city    | phone_no |
++------+---------+---------+---------+----------+
+| 1003 | Hadeela | alfalh  | calicut |     NULL |
++------+---------+---------+---------+----------+
+1 row in set (0.00 sec)
+
+4.List the product names if it finds any records in the invoice items table has quantity =3 (use special operators)
+
+mysql> select pname from product where exists(select 1 from invoice_item where invoice_item.pid=product.pid and quantity=2);
++-------+
+| pname |
++-------+
+| pen   |
++-------+
+1 row in set (0.00 sec)
+
