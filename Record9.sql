@@ -26,3 +26,4 @@ mysql> select pname,price,price_range(price) from product//
 | Record book |   357 | high               |
 +-------------+-------+--------------------+
 6 rows in set (0.00 sec)
+//VERIFIED
