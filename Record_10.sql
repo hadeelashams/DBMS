@@ -55,3 +55,4 @@ mysql> select * from product //
 +-----+-------------+-------+
 6 rows in set (0.00 sec)
 
+//VERIFIED
