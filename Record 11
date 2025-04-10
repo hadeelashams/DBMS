@@ -34,3 +34,4 @@ mysql> call custname() //
 1 row in set (0.01 sec)
 
 Query OK, 0 rows affected (0.01 sec)
+//VERIFIED
