@@ -1,0 +1,36 @@
+#1.Write a PL/SQL program to create a name list of customers using CURSOR
+
+mysql> create procedure custname() begin declare done int default false; declare cust_name varchar(20); declare cust_cursor cursor for   select name   from customer; declare continue handler for not found set done =true; open cust_cursor; read_loop:loop  fetch cust_cursor into cust_name;  if done then      leave read_loop; end if; select cust_name
+as 'Customer Name'; end loop; close cust_cursor; end//
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> call custname() //
++---------------+
+| Customer Name |
++---------------+
+| fza           |
++---------------+
+1 row in set (0.01 sec)
+
++---------------+
+| Customer Name |
++---------------+
+| Hanan         |
++---------------+
+1 row in set (0.01 sec)
+
++---------------+
+| Customer Name |
++---------------+
+| Hadeela       |
++---------------+
+1 row in set (0.01 sec)
+
++---------------+
+| Customer Name |
++---------------+
+| Hibha         |
++---------------+
+1 row in set (0.01 sec)
+
+Query OK, 0 rows affected (0.01 sec)
