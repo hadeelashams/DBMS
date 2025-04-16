@@ -88,3 +88,4 @@ INVOICE> db.customer.updateMany({ cust_id:2},{$set:{city:"EKM"}});
 
 INVOICE> db.customer.deleteOne({city:"calicut"})
 { acknowledged: true, deletedCount: 1 }
+//VERIFIED
