@@ -90,3 +90,4 @@ INVOICE> db.customer.aggregate([
   { name: 'hanan', pname: 'Smartphone', price: 800 }
 ]
 
+//VERIFIED
